@@ -1,2 +1,1 @@
 # math-and-algorithms
-# math
