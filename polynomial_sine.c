@@ -15,18 +15,18 @@ int fact(int x) {
 	else return x*fact(x-1);
 }
 
-double calc_sine(double angle) {
+double calc_sine(double angle, int precision) {
 	double sine = 0;
-	for (int i=0; i<15; i++) {
+	for (int i=0; i<precision; i++) {
 		int exp = 2*i+1;
 		sine += pow(-1,i)*pow(angle,exp)/fact(exp);
 	}
 	return sine;
 }
 
-double calc_cosine(double angle) {
+double calc_cosine(double angle, int precision) {
 	double cosine = 0;
-	for (int i=0; i<15; i++) {
+	for (int i=0; i<precision; i++) {
 		int exp = 2*i;
 		cosine += pow(-1,i)*pow(angle,exp)/fact(exp);
 	}
@@ -41,11 +41,13 @@ int main() {
 	double angle;
 	scanf("%lf", &angle);
 	double result;
+	int precision = 10;
 
+	printf("%lf\n", reduce_angle(angle));
 	if (fabs(angle)<=45)
-		result = calc_sine(to_radians(reduce_angle(angle)));
+		result = calc_sine(reduce_angle(angle)/180*M_PI, precision);
 	else
-		result = calc_cosine(to_radians(90-reduce_angle(angle)));
+		result = calc_cosine((90-reduce_angle(angle))/180*M_PI, precision);
 
 	printf("%0.10lf\n", result);
 }
