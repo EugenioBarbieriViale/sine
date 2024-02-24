@@ -3,16 +3,15 @@ import pygame, sys, math
 pygame.init()
 clock = pygame.time.Clock()
 
-screenx,screeny = 1000,800
+screenx,screeny = 1000,400
 
 screen = pygame.display.set_mode([screenx,screeny])
 pygame.display.set_caption("Sine Function")
 
-xi = 700
-yi = 350
+xi = screenx - 200
+yi = screeny//2
 
-vel = 0
-acc = 1
+ang_vel = 0.03
 ang = 0
 
 r = 100
@@ -27,7 +26,7 @@ while True:
 
     screen.fill((0,0,0))
 
-    ang -= 0.02;
+    ang -= ang_vel
     x = math.cos(ang) * r + xi
     y = math.sin(ang) * r + yi
 
